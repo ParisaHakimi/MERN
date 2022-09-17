@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Display from "./components/Display";
 import TodoForm from "./components/TodoForm";
@@ -21,6 +21,17 @@ function App() {
     newTodos.splice(i, 1);
     setTodos(newTodos);
   };
+  useEffect(() => {
+    const data = window.localStorage.getItem("MY_TODOS");
+    if (data !== null) {
+      setTodos(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("MY_TODOS", JSON.stringify(todos));
+  }, [todos]);
+
   return (
     <div className="App">
       <h1>Todo List</h1>

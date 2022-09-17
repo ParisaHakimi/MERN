@@ -82,7 +82,9 @@ input[type="submit"] {
   color: rgb(224, 3, 3);
   cursor: pointer;
 }
-.todo-Completed,
-.todoDone {
+.todo-Completed{
   color: green;
+}
+.todoDone {
+  text-decoration: line-through;
 }
