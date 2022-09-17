@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-const TodoForm = ({ todos, setTodos }) => {
-  const [newTodo, setNewTodo] = useState("");
+const TodoForm = ({ todos, setTodos, addTodo }) => {
+  const [text, settext] = useState("");
   const formhandler = (e) => {
     e.preventDefault();
-    setTodos([...todos, newTodo]);
-    setNewTodo("");
+    if (text.trim !== "") {
+      addTodo(text);
+      settext("");
+    }
   };
   return (
     <form onSubmit={formhandler}>
       <input
         type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
+        placeholder="Todo text"
+        value={text}
+        onChange={(e) => settext(e.target.value)}
       />
       <input type="submit" value="Add" />
     </form>

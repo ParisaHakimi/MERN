@@ -5,11 +5,27 @@ import TodoForm from "./components/TodoForm";
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+  const addTodo = (todotext) => {
+    const newTodos = [...todos];
+    newTodos.unshift({ todotext, isComplete: false });
+    setTodos(newTodos);
+  };
+  const completed = (i) => {
+    const newTodos = [...todos];
+    newTodos[i].isComplete = !newTodos[i].isComplete;
+    setTodos(newTodos);
+  };
+  const deleteTodo = (i) => {
+    const newTodos = [...todos];
+    newTodos.splice(i, 1);
+    setTodos(newTodos);
+  };
   return (
     <div className="App">
       <h1>Todo List</h1>
-      <TodoForm todos={todos} setTodos={setTodos} />
-      <Display todos={todos} />
+      <TodoForm todos={todos} setTodos={setTodos} addTodo={addTodo} />
+      <Display todos={todos} completed={completed} deleteTodo={deleteTodo} />
     </div>
   );
 }
