@@ -10,27 +10,26 @@ function App() {
     const newTodos = [...todos];
     newTodos.unshift({ todotext, isComplete: false });
     setTodos(newTodos);
+    localStorage.setItem("MY_TODOS", JSON.stringify(newTodos));
   };
   const completed = (i) => {
     const newTodos = [...todos];
     newTodos[i].isComplete = !newTodos[i].isComplete;
     setTodos(newTodos);
+    localStorage.setItem("MY_TODOS", JSON.stringify(newTodos));
   };
   const deleteTodo = (i) => {
     const newTodos = [...todos];
     newTodos.splice(i, 1);
     setTodos(newTodos);
+    localStorage.setItem("MY_TODOS", JSON.stringify(newTodos));
   };
   useEffect(() => {
-    const data = window.localStorage.getItem("MY_TODOS");
+    const data = localStorage.getItem("MY_TODOS");
     if (data !== null) {
       setTodos(JSON.parse(data));
     }
   }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem("MY_TODOS", JSON.stringify(todos));
-  }, [todos]);
 
   return (
     <div className="App">
