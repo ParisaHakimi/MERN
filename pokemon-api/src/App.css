@@ -3,9 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 .App {
-  margin: 20px auto;
+  display: flex;
+  padding: 50px;
+  justify-content: space-around;
+}
+.app1,
+.app2 {
   width: 30%;
-  background-color: aquamarine;
+  padding: 1rem; 
+}
+.app1 > h2,
+.app2 > h2 {
+  margin-bottom: 20px;
+}
+.app1 {
+  background-color: coral;
+}
+.app2 {
+  background-color: burlywood;
 }
