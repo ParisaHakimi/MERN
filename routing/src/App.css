@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App > h1 {
+  margin: 30px auto;
+  text-align: center;
+  background-color: aqua;
+}
+p {
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.container {
+  /* background-color: olive; */
+  /* margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+/* .box {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+} */
