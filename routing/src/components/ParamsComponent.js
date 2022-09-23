@@ -1,7 +1,7 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const ParamsComponent = () => {
+const ParamsComponent = (props) => {
   const { word, color, bgColor } = useParams();
   return (
     <div>
