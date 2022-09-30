@@ -24,20 +24,26 @@ const findOneSngleJoke = (req, res) => {
     });
 };
 // update a single joke matching this _id
-const updateSingleJoke=(req,res)=>{
-    Joke.findOneAndUpdate({_id: req.params.id })
+const updateSingleJoke = (req, res) => {
+  Joke.findOneAndUpdate({ _id: req.params.id })
     .then((result) => res.json(result))
     .catch((err) => {
       console.log(err);
     });
-}
+};
 // delete a single joke matching this _id
-const deleteSingleJoke=(req,res)=>{
-    Joke.deleteOne({_id: req.params.id})
+const deleteSingleJoke = (req, res) => {
+  Joke.deleteOne({ _id: req.params.id })
     .then((result) => res.json(result))
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
-module.export={getAllJokes,createNewJoke,findOneSngleJoke,updateSingleJoke,deleteSingleJoke}
+module.exports = {
+  getAllJokes,
+  createNewJoke,
+  findOneSngleJoke,
+  updateSingleJoke,
+  deleteSingleJoke,
+};
