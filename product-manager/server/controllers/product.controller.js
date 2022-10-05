@@ -1,8 +1,9 @@
 const Product = require("../models/product.model");
 
 const getAllProducts = (req, res) => {
-  Product.find()
+  Product.find({})
     .then((result) => {
+      console.log(result)
       res.json(result);
     })
     .catch((err) => {
