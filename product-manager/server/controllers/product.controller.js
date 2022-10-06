@@ -3,7 +3,7 @@ const Product = require("../models/product.model");
 const getAllProducts = (req, res) => {
   Product.find({})
     .then((result) => {
-      console.log(result)
+      console.log(result);
       res.json(result);
     })
     .catch((err) => {
@@ -29,7 +29,7 @@ const createNewProduct = (req, res) => {
     });
 };
 const UpdateExistingProduct = (req, res) => {
-  Product.findOneAndUpdate({ _id: req.params.id })
+  Product.findOneAndUpdate({ _id: req.params.id }, req.body)
     .then((result) => {
       res.json(result);
     })

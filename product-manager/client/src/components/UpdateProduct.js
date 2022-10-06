@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateProduct = (props) => {
-  const { products, setProducts } = props;
+  // const { products, setProducts } = props;
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/products/${id}`)
@@ -21,6 +22,17 @@ const UpdateProduct = (props) => {
 
   const onsubmitHandler = (e) => {
     e.preventDefault();
+    axios
+      .put(`http://localhost:8000/api/products/${id}`, {
+        title,
+        price,
+        description,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <form onSubmit={onsubmitHandler}>
