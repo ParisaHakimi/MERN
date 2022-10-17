@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const EditAuthor = ({ authorName, setAuthorName }) => {
+const EditAuthor = ({ authorName, setAuthorName, errors, setErrors }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
@@ -25,7 +25,7 @@ const EditAuthor = ({ authorName, setAuthorName }) => {
         setAuthorName("");
       })
       .catch((err) => {
-        console.log(err);
+        setErrors(err.response.data.errors);
       });
   };
   return (
@@ -40,6 +40,10 @@ const EditAuthor = ({ authorName, setAuthorName }) => {
             value={authorName}
             onChange={(e) => setAuthorName(e.target.value)}
           />
+          <br />
+          {errors.authorName ? (
+            <span className="text-danger">{errors.authorName.message}</span>
+          ) : null}
         </label>
         <div className="btn-container w-100 d-flex justify-content-between">
           <Link to="/" className="btn btn-secondary w-25">

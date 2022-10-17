@@ -6,7 +6,7 @@ module.exports = {
         res.json(result);
       })
       .catch((err) => {
-        console.log(err);
+        res.status(400).json(err);
       });
   },
   getOneAuthor: (req, res) => {
@@ -15,7 +15,7 @@ module.exports = {
         res.json(result);
       })
       .catch((err) => {
-        console.log(err);
+        res.status(400).json(err);
       });
   },
   editAuthor: (req, res) => {
@@ -27,7 +27,7 @@ module.exports = {
         res.json(result);
       })
       .catch((err) => {
-        console.log(err);
+        res.status(400).json(err);
       });
   },
   createAuthor: (req, res) => {
@@ -36,7 +36,7 @@ module.exports = {
         res.json(result);
       })
       .catch((err) => {
-        console.log(err);
+        res.status(400).json(err);
       });
   },
   deleteOneAuthor: (req, res) => {
@@ -45,7 +45,7 @@ module.exports = {
         res.json(result);
       })
       .catch((err) => {
-        console.log(err);
+        res.status(400).json(err);
       });
   },
 };

@@ -7,6 +7,7 @@ import NewAuthor from "./components/NewAuthor";
 
 function App() {
   const [authorName, setAuthorName] = useState("");
+  const [errors, setErrors] = useState({})
 
   return (
     <BrowserRouter>
@@ -14,8 +15,8 @@ function App() {
         <h1 className="text-center mt-3">Favorite authors</h1>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/create-author" element={<NewAuthor authorName={authorName} setAuthorName={setAuthorName}/>} />
-          <Route path="/edit-author/:id" element={<EditAuthor authorName={authorName} setAuthorName={setAuthorName}/>} />
+          <Route path="/create-author" element={<NewAuthor authorName={authorName} setAuthorName={setAuthorName} errors={errors} setErrors={setErrors}/>} />
+          <Route path="/edit-author/:id" element={<EditAuthor authorName={authorName} setAuthorName={setAuthorName} errors={errors} setErrors={setErrors}/>} />
         </Routes>
       </div>
     </BrowserRouter>

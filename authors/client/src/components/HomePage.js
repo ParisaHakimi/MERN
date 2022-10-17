@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Author from "./Author";
 
 const HomePage = () => {
   const [authors, setAuthors] = useState([]);
@@ -18,10 +19,18 @@ const HomePage = () => {
       .delete(`http://localhost:8000/api/deletAuthor/${id}`)
       .then((res) => {
         console.log("success deleting author", res);
-        const filteredAuthors = authors.filter((author) => author._id !== id);
-        setAuthors(filteredAuthors);
       })
       .catch((err) => console.log(err));
+  };
+
+  const menuItems = [...new Set(authors.map((Val) => Val.petType))];
+
+  const filterItem = (curcat) => {
+    const newItem = authors.filter((newVal) => {
+      return newVal.petType === curcat;
+      // comparing petType for displaying data
+    });
+    setAuthors(newItem);
   };
 
   return (
@@ -33,31 +42,29 @@ const HomePage = () => {
         <div className="author-title-container d-flex justify-content-around">
           <p className="">Author</p>
           <p>Actions available</p>
-        </div>
-        {authors.map((author) => {
-          return (
-            <li key={author._id} className="d-flex justify-content-between">
-              {author.authorName}
-              <div className="btn-container w-50 d-flex justify-content-evenly">
-                <Link
-                  to={`/edit-author/${author._id}`}
-                  className="text-light w-50"
-                >
-                  <button className="btn btn-success w-100 ">Edit</button>
-                </Link>
-
+          <div className="d-flex justify-content-center">
+            {menuItems.map((Val, id) => {
+              return (
                 <button
-                  className="btn btn-danger text-light w-25"
-                  onClick={(e) => {
-                    deleteHandler(author._id);
-                  }}
+                  className="btn-dark text-white p-1 px-2 mx-5 btn fw-bold"
+                  key={id}
+                  onClick={() => filterItem(Val)}
                 >
-                  Delete
+                  {Val}
                 </button>
-              </div>
-            </li>
-          );
-        })}
+              );
+            })}
+            <button
+              className="btn-dark text-white p-1 px-3 mx-5 fw-bold btn"
+              onClick={() => setAuthors(authors.data)}
+            >
+              All
+            </button>
+          </div>
+        </div>
+        {authors.map((author) => (
+          <Author author={author} isLiked={author.isLiked} deleteHandler={deleteHandler}/>
+        ))}
       </ul>
     </div>
   );

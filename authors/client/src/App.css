@@ -41,3 +41,6 @@ form > label > input {
   width: 80%;
   padding: 2px;
 }
+.liked {
+  color: red;
+}
