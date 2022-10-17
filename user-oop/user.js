@@ -25,4 +25,30 @@ const guido = new User("Guido Vann", "guido@email.com");
 // console.log(guido.makeWithdrawal);
 // guido.displayBalance();
 // console.log(guido.displayBalance);
-guido.makeDeposite(200).makeDeposite(50).makeWithdrawal(60).displayBalance();
+// guido.makeDeposite(200).makeDeposite(50).makeWithdrawal(60).displayBalance();
+class BankAccount {
+  constructor(intRate = 0.08, balance = 0) {
+    this.interestRate = intRate;
+    this.balance = balance;
+  }
+  deposit(amount) {
+    this.balance += amount;
+    return this;
+  }
+  withdraw(amount) {
+    this.balance -= amount;
+    return this;
+  }
+  displayAccountInfo() {
+    console.log(
+      `Account Balance: $${this.balance}, interest rate:${this.interestRate}`
+    );
+    return this;
+  }
+  yieldInterest() {
+    this.balance += this.balance * this.interestRate;
+    return this;
+  }
+}
+const accont1 = new BankAccount(0.02, 130);
+accont1.displayAccountInfo();
