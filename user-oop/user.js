@@ -1,23 +1,23 @@
-class User {
-  constructor(username, emailAddress) {
-    this.name = username;
-    this.email = emailAddress;
-    this.accountBalance = 0;
-  }
-  makeDeposite(amount) {
-    this.accountBalance += amount;
-    return this;
-  }
-  makeWithdrawal(amount) {
-    this.accountBalance -= amount;
-    return this;
-  }
-  displayBalance() {
-    console.log(`name:${this.name}, Account Balance:${this.accountBalance}`);
-    return this;
-  }
-}
-const guido = new User("Guido Vann", "guido@email.com");
+// class User {
+//   constructor(username, emailAddress) {
+//     this.name = username;
+//     this.email = emailAddress;
+//     this.accountBalance = 0;
+//   }
+//   makeDeposite(amount) {
+//     this.accountBalance += amount;
+//     return this;
+//   }
+//   makeWithdrawal(amount) {
+//     this.accountBalance -= amount;
+//     return this;
+//   }
+//   displayBalance() {
+//     console.log(`name:${this.name}, Account Balance:${this.accountBalance}`);
+//     return this;
+//   }
+// }
+// const guido = new User("Guido Vann", "guido@email.com");
 // guido.makeDeposite(200);
 // guido.makeDeposite(450);
 // console.log(guido.accountBalance);
@@ -50,5 +50,28 @@ class BankAccount {
     return this;
   }
 }
-const accont1 = new BankAccount(0.02, 130);
-accont1.displayAccountInfo();
+// const accont1 = new BankAccount(0.02, 130);
+// accont1.displayAccountInfo();
+class User {
+  constructor(username, emailAddress) {
+    this.name = username;
+    this.email = emailAddress;
+    this.account = new BankAccount();
+  }
+  makeDeposit(amount) {
+    this.account.deposit(amount);
+    return this;
+  }
+  makeWithdrawal(amount) {
+    this.account.withdraw(amount);
+    return this;
+  }
+  displayInfo() {
+    console.log(
+      `Name: ${this.name}, Account Balance: $${this.account.balance}, Interest Rate: ${this.account.intRate}`
+    );
+    return this;
+  }
+}
+const tom = new User("Tom Joon", "tom@email.com");
+tom.makeDeposit(40);
